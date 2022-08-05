@@ -1,6 +1,5 @@
 {
   "name": "find-where-server",
-  "packageManager": "yarn@3.2.2",
   "scripts": {
     "dev": "nodemon index.js"
   },
