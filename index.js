@@ -35,9 +35,9 @@ io.on('connect', (socket) => {
     socket.to(gameCode).emit("show-score", score, correctCount, opponentHighScore)
   })
 
-  socket.on("game-over", (gameCode) => {
+  socket.on("game-over", (gameCode, username, highScore, correctCount, incorrectCount, score) => {
     // console.log("Game Over")
-    socket.to(gameCode).emit("over-show")
+    socket.to(gameCode).emit("over-show", username, highScore, correctCount, incorrectCount, score)
   })
 
 });
