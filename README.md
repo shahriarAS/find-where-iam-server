@@ -10,5 +10,4 @@ This is the backend part of **[Find Where I Am](https://github.com/shahriar-prog
 
 ### Packages ( Some of them )
 - NodeJs
-- Express
 - Socket.io
