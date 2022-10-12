@@ -1,7 +1,20 @@
-const { Server } = require("socket.io");
+const http = require('http');
+//const { Server } = require("socket.io");
+const socketIO = require('socket.io');
 require('dotenv').config()
 const { instrument } = require("@socket.io/admin-ui");
-const io = new Server(process.env.PORT, {
+
+// Just to test server
+const server = http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.end(`
+    <h4>Yes! Your server is working.</h4>
+    <p>This is a server of an online game <a target="_blank" href="https://github.com/shahriar-programmer/find-where-i-am">Find Where I Am</a><p>
+    `);
+});
+
+const io = socketIO(server, {
+  transports:['polling'],
   cors: {
     origin: [process.env.CLIENT_URL, process.env.CLIENT_URL2, "https://admin.socket.io"],
     credentials: true
@@ -45,3 +58,7 @@ io.on('connect', (socket) => {
 instrument(io, {
   auth: false
 });
+
+server.listen(process.env.PORT || 4000, () => {
+console.log(`Server listening at port ${process.env.PORT || 4000}`)
+}); 
